@@ -37,4 +37,18 @@
         guess
         (sqcb-iter (improve guess) guess)))
   (sqcb-iter 1.0 0.0))
-    
+
+;; Exercise 1.11 ---------------------------------------------------------------
+
+(define (recursive-fn n)
+  (if (< n 3)
+      n
+      (+ (fn (- n 1)) (* 2 (fn (- n 2))) (* 3 (fn (- n 3))))))
+
+(define (iterative-fn n)
+  (define (iter a b c count)
+    (define val (+ (* 3 a) (* 2 b) c))
+    (if (= count n)
+        val
+        (iter b c val (+ count 1))))
+  (iter 0 1 2 3))
