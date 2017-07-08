@@ -59,3 +59,13 @@
     (cond ((or (= col 1) (= row col)) 1)
           ((or (> col row) (< row 0) (< col 1)) 0)
           (else (+ (pascal (- row 1) (- col 1)) (pascal (- row 1) col)))))
+
+;; Exercise 1.16 ---------------------------------------------------------------
+
+(define (fast-iter-expt base n)
+    (define (expt-iter n a b)
+        (cond ((= n 0) a)
+              ((even? n) (expt-iter (/ n 2) a (square b)))
+              (else (expt-iter (- n 1) (* a b) b))))
+    (expt-iter n 1 base))
+
