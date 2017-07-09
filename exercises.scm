@@ -79,3 +79,15 @@
               ((even? y) (mul-iter (double x) (halve y)))
               (else (+ x (mul-iter (+ x) (- y 1))))))
     (mul-iter x y))
+
+;; Exercise 1.18 ---------------------------------------------------------------
+
+(define (* x y)
+    (define (halve x) (/ x 2))
+    (define (double x) (+ x x))
+    (define (mul-iter a b c)
+        (cond ((= c 0) b)
+              ((even? c) (mul-iter (double a) b (halve c)))
+              (else (mul-iter a (+ b a) (- c 1)))))
+    (mul-iter x 0 y))
+
