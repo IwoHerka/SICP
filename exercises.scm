@@ -69,3 +69,13 @@
               (else (expt-iter (- n 1) (* a b) b))))
     (expt-iter n 1 base))
 
+;; Exercise 1.17 ---------------------------------------------------------------
+
+(define (* x y)
+    (define (halve x) (/ x 2))
+    (define (double x) (+ x x))
+    (define (mul-iter x y)
+        (cond ((= y 1) x)
+              ((even? y) (mul-iter (double x) (halve y)))
+              (else (+ x (mul-iter (+ x) (- y 1))))))
+    (mul-iter x y))
